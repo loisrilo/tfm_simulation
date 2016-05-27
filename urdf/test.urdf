@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<robot name="myfirst">
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.15"/>
+      </geometry>
+      <material name="gris">
+	<!--revisar gris xd-->
+	<color rgba="0.55 0.55 0.55 1"/>
+      </material>
+    </visual>
+  </link>
+  <link name="brazo1">
+    <visual>
+      <origin xyz="-0.125 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.25 0.03 0.03"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="base_brazo1" type="revolute">
+    <axis xyz="0 -1 0"/>
+    <limit effort="100.0" lower="0.0" upper="1.8" velocity="0.5"/>
+    <parent link="base_link"/>
+    <child link="brazo1"/>
+    <origin xyz="-0.16 0 0"/>
+  </joint>	
+
+  <link name="brazo2">
+    <visual>
+      <origin xyz="0.125 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.25 0.03 0.03"/>
+      </geometry>
+    </visual>
+  </link> 
+
+  <joint name="base_brazo2" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="100.0" lower="0.0" upper="1.8" velocity="0.5"/>
+    <parent link="base_link"/>
+    <child link="brazo2"/>
+    <origin xyz="0.16 0 0"/>
+  </joint>
+
+  <link name="antebrazo1">
+    <visual>
+      <origin xyz="0.175 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.35 0.02 0.02"/>
+      </geometry>
+    </visual>
+  </link> 
+
+  <joint name="codo1" type="continuous">
+    <parent link="brazo1"/>
+    <child link="antebrazo1"/>
+    <axis xyz="0 -1 0"/>
+    <origin xyz="-0.25 0 0"/>
+  </joint>
+
+  <link name="antebrazo2">
+    <visual>
+      <origin xyz="-0.175 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.35 0.02 0.02"/>
+      </geometry>
+    </visual>
+  </link> 
+
+  <joint name="codo2" type="continuous">
+    <parent link="brazo2"/>
+    <child link="antebrazo2"/>
+    <axis xyz="0 1 0"/>
+    <origin xyz="0.25 0 0"/>
+  </joint>
+
+  <link name="actuador">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 -1.57075 0"/>
+      <geometry>
+	<cylinder length="0.01" radius="0.05"/>
+      </geometry>
+    </visual>
+  </link> 
+
+  <link name="aux1"/>
+  <link name="aux2"/>
+
+  <joint name="act_x" type="prismatic">
+    <parent link="base_link"/>
+    <child link="aux1"/>
+    <limit effort="100.0" lower="-1" upper="1" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+  <joint name="act_y" type="prismatic">
+    <parent link="aux1"/>
+    <child link="aux2"/>
+    <limit effort="100.0" lower="-1" upper="1" velocity="0.5"/>
+    <origin rpy="0 0 -1.57075" xyz="0 0 0"/>
+  </joint>
+
+  <joint name="act_z" type="prismatic">
+    <parent link="aux2"/>
+    <child link="actuador"/>
+    <limit effort="100.0" lower="0" upper="1" velocity="0.5"/>
+    <origin rpy="0 1.57075 0" xyz="0 0 0"/>
+  </joint>
+
+</robot>
