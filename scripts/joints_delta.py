@@ -13,7 +13,7 @@ joint = JointState()
 
 def callback(data):
     global joint
-    rospy.loginfo('callback')
+    # rospy.loginfo('callback')
     p = delta_kinematics.forward(data.theta1, data.theta2, data.theta3)
     punto = [p[1],p[2],p[3]]
     c1 = codos.punto_codo(data.theta1)
@@ -39,7 +39,7 @@ def callback(data):
 
 def talker():
     pub = rospy.Publisher('joint_states', JointState, queue_size=10)
-    rospy.init_node('talker_joints', anonymous=True)
+    rospy.init_node('posicionador_modelo', anonymous=False)
     rate = rospy.Rate(10)
     while not rospy.is_shutdown():
         # rospy.loginfo('hola')

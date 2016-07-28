@@ -5,10 +5,10 @@
 import math
 
 # Specific geometry for my delta robot:
-e = 100.0  # small triangle side (EE)
-f = 215.0  # support triangle side
-re = 350.0  # upper arm length
-rf = 250.0  # lower arm length
+e = 130.0  # small triangle side (EE)
+f = 125.0  # support triangle side
+re = 205.0  # upper arm length
+rf = 150.0  # lower arm length
 
 # Trigonometric constants
 s = 165 * 2

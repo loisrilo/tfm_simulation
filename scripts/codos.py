@@ -1,10 +1,10 @@
 import math
 
 # Specific geometry for my delta robot:
-e = 100.0  # small triangle side (EE)
-f = 215.0  # support triangle side
-re = 350.0  # upper arm length
-rf = 250.0  # lower arm length
+e = 130.0  # small triangle side (EE)100
+f = 125.0  # support triangle side215
+re = 205.0  # upper arm length350
+rf = 150.0  # lower arm length250
 hf = math.sqrt(0.75*(f**2))
 he = math.sqrt(0.75*(e**2))
 
@@ -90,7 +90,3 @@ def angulos_codo(codo, ee, brazo):
     else:
         ang_b = 0
     return [ang_a, ang_b]
-
-
-
-
